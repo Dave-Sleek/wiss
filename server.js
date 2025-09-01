@@ -225,9 +225,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // module.exports = app;  // Required for Vercel
-export default app; // Required for Vercel
-
-
+ // Required for Vercel
 
 // Optional: graceful error logging
 process.on("unhandledRejection", (err) => {
@@ -236,3 +234,5 @@ process.on("unhandledRejection", (err) => {
 process.on("uncaughtException", (err) => {
   console.error("Uncaught Exception:", err);
 });
+
+export default app;
