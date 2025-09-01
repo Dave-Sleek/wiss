@@ -218,16 +218,17 @@ app.post("/api/summarize", async (req, res) => {
 //   console.log(`🚀 API ready on http://localhost:${PORT}`);
 // });
 
+// ---- Start server (local only) ----
 if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => {
-    console.log(`Server running locally at http://localhost:${PORT}`);
+    console.log(`🚀 Server running locally at http://localhost:${PORT}`);
   });
 }
 
-// module.exports = app;  // Required for Vercel
- // Required for Vercel
+// ✅ Export for Vercel (ES module style)
+export default app;
 
-// Optional: graceful error logging
+// ---- Optional: graceful error logging ----
 process.on("unhandledRejection", (err) => {
   console.error("Unhandled Rejection:", err);
 });
@@ -235,4 +236,5 @@ process.on("uncaughtException", (err) => {
   console.error("Uncaught Exception:", err);
 });
 
-export default app;
+// module.exports = app;  // Required for Vercel
+//export default app;
