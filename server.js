@@ -171,7 +171,7 @@ app.post("/api/summarize", async (req, res) => {
     const model = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 
     if (!key) {
-      console.warn("⚠️ No GROQ_API_KEY found, running in offline mode.");
+      console.warn("No GROQ_API_KEY found, running in offline mode.");
       const first = text.split("\n").filter(Boolean).slice(0, 3).join(" ");
       return res.json({
         ok: true,
@@ -214,19 +214,19 @@ app.post("/api/summarize", async (req, res) => {
 
 
 // ---- Start server ----
-// app.listen(PORT, () => {
-//   console.log(`🚀 API ready on http://localhost:${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(` API ready on http://localhost:${PORT}`);
+});
 
 // ---- Start server (local only) ----
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running locally at http://localhost:${PORT}`);
-  });
-}
+// if (process.env.NODE_ENV !== "production") {
+//   app.listen(PORT, () => {
+//     console.log(`Server running locally at http://localhost:${PORT}`);
+//   });
+// }
 
-// ✅ Export for Vercel (ES module style)
-export default app;
+// Export for Vercel (ES module style)
+// export default app;
 
 // ---- Optional: graceful error logging ----
 process.on("unhandledRejection", (err) => {
