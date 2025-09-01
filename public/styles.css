@@ -1,0 +1,187 @@
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(1200px 600px at 10% -20%, #2c3eaa33, transparent 60%),
+    radial-gradient(1200px 600px at 100% 0%, #00997a33, transparent 60%),
+    #0a0d1f;
+  color: #e9eefc;
+
+  /* override the glass variables */
+  --glass-bg: rgba(0, 0, 0, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* card styling */
+.card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* dark mode card text & hover */
+body.dark-mode .card {
+  color: #f0f4ff;
+}
+
+body.dark-mode .card:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* footer styling */
+body.dark-mode .footer {
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 1rem;
+  /* text-align: center; */
+  transition: all 0.3s ease;
+  color:#ffffff;
+}
+
+/* ===== Navbar Dark Mode ===== */
+.navbar {
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .navbar {
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #e9eefc;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .navbar .navbar-brand,
+body.dark-mode .navbar .nav-link {
+  color: #e9eefc;
+}
+
+body.dark-mode .navbar .nav-link:hover {
+  color: #00ffcc; /* teal accent hover */
+}
+
+body.dark-mode .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+body.dark-mode .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28233,238,252,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* ===== Glassy Toggle with Icons ===== */
+/* ===== Glassy Toggle with Icons + Neon Glow ===== */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 30px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+}
+
+.slider .icon {
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
+}
+
+/* Position of the knob */
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+}
+
+/* Active (Dark Mode) */
+.theme-switch input:checked + .slider {
+  background: linear-gradient(135deg, #00ffcc, #0099ff);
+}
+
+.theme-switch input:checked + .slider::before {
+  transform: translateX(28px);
+  background: #1e1e1e;
+  box-shadow: 
+    0 0 6px #00ffcc,
+    0 0 12px #00ffcc,
+    0 0 20px #0099ff;  /* neon glow */
+}
+
+/* Icon visibility */
+.theme-switch input:not(:checked) + .slider .moon {
+  opacity: 0.3;
+}
+.theme-switch input:checked + .slider .sun {
+  opacity: 0.3;
+}
+
+
+/* PWA-specific styles */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  #installBtn {
+    display: none !important;
+  }
+}
+
+/* Install button */
+#installBtn {
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+#installBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* body.dark-mode footer {
+  color: #cfd8f3;
+} */

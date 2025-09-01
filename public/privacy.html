@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy - Wikipedia AI Summary</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <style>
+   :root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(1200px 600px at 10% -20%, #2c3eaa33, transparent 60%),
+    radial-gradient(1200px 600px at 100% 0%, #00997a33, transparent 60%),
+    #0a0d1f;
+  color: #e9eefc;
+
+  /* override the glass variables */
+  --glass-bg: rgba(0, 0, 0, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* card styling */
+.card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* dark mode card text & hover */
+body.dark-mode .card {
+  color: #f0f4ff;
+}
+
+body.dark-mode .card:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* footer styling */
+body.dark-mode .footer {
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 1rem;
+  /* text-align: center; */
+  transition: all 0.3s ease;
+  color:#ffffff;
+}
+
+/* ===== Navbar Dark Mode ===== */
+.navbar {
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .navbar {
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #e9eefc;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .navbar .navbar-brand,
+body.dark-mode .navbar .nav-link {
+  color: #e9eefc;
+}
+
+body.dark-mode .navbar .nav-link:hover {
+  color: #00ffcc; /* teal accent hover */
+}
+
+body.dark-mode .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+body.dark-mode .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28233,238,252,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* ===== Glassy Toggle with Icons ===== */
+/* ===== Glassy Toggle with Icons + Neon Glow ===== */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 30px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+}
+
+.slider .icon {
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
+}
+
+/* Position of the knob */
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+}
+
+/* Active (Dark Mode) */
+.theme-switch input:checked + .slider {
+  background: linear-gradient(135deg, #00ffcc, #0099ff);
+}
+
+.theme-switch input:checked + .slider::before {
+  transform: translateX(28px);
+  background: #1e1e1e;
+  box-shadow: 
+    0 0 6px #00ffcc,
+    0 0 12px #00ffcc,
+    0 0 20px #0099ff;  /* neon glow */
+}
+
+/* Icon visibility */
+.theme-switch input:not(:checked) + .slider .moon {
+  opacity: 0.3;
+}
+.theme-switch input:checked + .slider .sun {
+  opacity: 0.3;
+}
+
+/* body.dark-mode footer {
+  color: #cfd8f3;
+} */
+
+  </style>
+</head>
+<body class="dark-mode-toggle">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card glass-card">
+          <div class="card-header text-center">
+            <h1><i class="bi bi-shield-lock"></i> Privacy Policy</h1>
+            <p class="mb-0">Last Updated: <span id="current-date"></span></p>
+          </div>
+          <div class="card-body">
+            <!-- Policy Content -->
+            <div class="policy-section">
+              <h2>1. Introduction</h2>
+              <p>Wikipedia AI Summary ("we", "us", or "our") operates this web application (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service.</p>
+            </div>
+
+            <div class="policy-section">
+              <h2>2. Information Collection</h2>
+              <h5>We collect:</h5>
+              <ul>
+                <li><strong>Search queries</strong> - Processed through Wikimedia APIs</li>
+                <li><strong>Usage data</strong> - Pages visited, interactions (anonymous)</li>
+                <li><strong>Device information</strong> - Browser type, OS version (for compatibility)</li>
+              </ul>
+              
+              <h5 class="mt-4">We do NOT collect:</h5>
+              <ul>
+                <li>Personal identities</li>
+                <li>Payment information</li>
+                <li>Precise location data</li>
+              </ul>
+            </div>
+
+            <div class="policy-section">
+              <h2>3. How We Use Data</h2>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Purpose</th>
+                      <th>Data Type</th>
+                      <th>Storage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Deliver Wikipedia summaries</td>
+                      <td>Search queries</td>
+                      <td>Not stored</td>
+                    </tr>
+                    <tr>
+                      <td>Save user preferences</td>
+                      <td>Language/Dark mode</td>
+                      <td>Local storage</td>
+                    </tr>
+                    <tr>
+                      <td>Improve service</td>
+                      <td>Anonymous usage</td>
+                      <td>30 days</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="policy-section">
+              <h2>4. Third-Party Services</h2>
+              <p>We rely on:</p>
+              <ul>
+                <li><strong>Wikimedia APIs</strong> - <a href="https://foundation.wikimedia.org/wiki/Privacy_policy" target="_blank">Privacy Policy</a></li>
+                <li><strong>Cloudflare</strong> - For DNS and security</li>
+                <li><strong>jsPDF/html2canvas</strong> - Client-side processing only</li>
+              </ul>
+            </div>
+
+            <div class="policy-section">
+              <h2>5. Your Rights</h2>
+              <p>Under data protection laws (GDPR/CCPA), you can:</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-3 bg-transparent">
+                    <div class="card-body">
+                      <h5><i class="bi bi-trash"></i> Delete Data</h5>
+                      <p>Clear your search history and notes via the app settings.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-3 bg-transparent">
+                    <div class="card-body">
+                      <h5><i class="bi bi-eye"></i> Access Data</h5>
+                      <p>View stored data in your browser's local storage.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="policy-section">
+              <h2>6. Changes to This Policy</h2>
+              <p>We may update this Privacy Policy. We will notify you by updating the "Last Updated" date.</p>
+            </div>
+
+            <div class="policy-section">
+              <h2>7. Contact Us</h2>
+              <p>For privacy concerns: <a href="mailto:dave.truth87@gmail.com">Dave</a></p>
+            </div>
+
+             <img src="assets/icon-354.png" alt="Site logo" class="me-2">
+
+            <div class="alert alert-info mt-4">
+              <i class="bi bi-info-circle"></i> This is an unofficial application not affiliated with the Wikimedia Foundation.
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <a href="index.html" class="btn btn-primary">
+              <i class="bi bi-arrow-left"></i> Back to App
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark Mode Toggle -->
+  <div class="position-fixed bottom-0 end-0 m-3">
+    <button id="darkModeToggle" class="btn btn-dark rounded-circle p-2">
+      <i class="bi bi-moon-stars"></i>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Set current date
+    document.getElementById('current-date').textContent = new Date().toLocaleDateString();
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    if (storedDarkMode) {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      darkModeToggle.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon-stars"></i>';
+    });
+  </script>
+</body>
+</html>

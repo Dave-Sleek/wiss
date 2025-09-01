@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wikidata Smart Summary</title>
+
+  <meta name="theme-color" content="#5892f0" />
+  <link rel="manifest" href="manifest.json" />
+
+  <link rel="icon" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+
+  <!-- iOS Safari PWA tags -->
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32">
+  <link rel="icon" href="assets/icon-64.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm">
+    <div class="container">
+      <!-- Wikimedia Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikimedia-logo.png" 
+             alt="Wikimedia Logo" width="35" height="35" class="me-2"> -->
+             <img src="assets/icon-200.png" alt="Site logo" class="me-2">
+        <!-- <span class="fw-bold">Wikidata Smart Summary</span> -->
+      </a>
+
+      <div class="d-flex gap-3 align-items-center">
+                <label class="theme-switch" for="darkModeToggle">
+                  <input type="checkbox" id="darkModeToggle" />
+                  <span class="slider">
+                    <span class="icon sun">🌞</span>
+                    <span class="icon moon">🌙</span>
+                  </span>
+                </label>
+              </div>
+
+      <!-- Collapsible Menu -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">  
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.wikidata.org/" target="_blank">Wikidata</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy.html">Privacy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#footer">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="card glass-card shadow-lg">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="h4 mb-1">Wikidata Smart Summary</h1>
+              <p class="mb-0 small opacity-75">Structured facts • AI-style readable summaries</p>
+            </div>
+            <div class="d-flex gap-3 align-items-center">
+              <select id="language-select" class="form-select form-select-sm w-auto">
+                <option value="en">English</option>
+                <option value="ig">Igbo</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="it">Italian</option>
+                <option value="pt">Portuguese</option>
+                <option value="ru">Russian</option>
+                <option value="zh">Chinese</option>
+                <option value="ja">Japanese</option>
+                <option value="ar">Arabic</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <!-- Search -->
+            <div class="input-group input-group-lg mb-3">
+              <input id="searchInput" class="form-control" placeholder="Search a person, place, topic..." />
+              <button id="searchButton" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+
+            <!-- Loading -->
+            <div id="loadingIndicator" class="text-center my-4 d-none">
+              <div class="spinner-border" role="status"></div>
+              <p class="mt-2">Searching Wikidata…</p>
+            </div>
+
+            <!-- Error -->
+            <div id="errorAlert" class="alert alert-danger d-none"></div>
+
+            <!-- Results -->
+            <div id="resultsContainer" class="d-none">
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div id="imageContainer" class="image-wrap"></div>
+                  <div id="factBox" class="card border-0 subtle-card mt-3 d-none">
+                    <div class="card-body py-3">
+                      <h6 class="mb-2 text-uppercase tracking-1">Key Facts</h6>
+                      <ul id="factList" class="list-unstyled mb-0 small"></ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <h2 id="resultTitle" class="h4 mt-1"></h2>
+                  <div id="resultContent" class="wiki-result mb-3"></div>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <a id="fullArticleLink" class="btn btn-outline-primary btn-sm" target="_blank">
+                      <i class="bi bi-book"></i> Open Wikipedia
+                    </a>
+                    <button id="readMoreBtn" class="btn btn-outline-secondary btn-sm d-none">
+                      <i class="bi bi-arrows-angle-expand"></i> Read more
+                    </button>
+                    <button id="summarizeBtn" class="btn btn-outline-info btn-sm">
+                      <i class="bi bi-magic"></i> AI summary
+                    </button>
+                    <button id="readAloudBtn" class="btn btn-outline-success btn-sm">
+                      <i class="bi bi-volume-up"></i> Read aloud
+                    </button>
+                    <button id="stopReadingBtn" class="btn btn-outline-danger btn-sm d-none">
+                      <i class="bi bi-stop-fill"></i> Stop
+                    </button>
+                     <button id="downloadPdfBtn" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                  </button>
+                   <!-- <button id="shareCardBtn" class="btn btn-outline-info btn-sm">
+                      <i class="bi bi-share"></i> Share
+                    </button> -->
+                  </div>
+
+                  <!-- Notes -->
+                  <div id="notesSection" class="mt-4 d-none">
+                    <h6>Your Notes</h6>
+                    <textarea id="articleNote" class="form-control" rows="5" placeholder="Write private reflections here…"></textarea>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                      <button id="saveNoteBtn" class="btn btn-primary btn-sm">Save note</button>
+                      <div id="noteSavedAlert" class="text-success small d-none">Saved ✓</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- History -->
+              <div class="mt-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="h6 mb-0">Search History</h5>
+                  <button id="clearHistoryBtn" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i> Clear
+                  </button>
+                </div>
+                <ul class="list-group" id="searchHistory"></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer small">
+            Data: Wikidata (CC0) + Wikipedia extracts. Summaries may contain errors — verify important info.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Share Card Modal -->
+  <div class="modal fade" id="shareCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass-card">
+        <div class="modal-header">
+          <h5 class="modal-title">Share Article</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card share-card mb-4">
+            <img id="cardImage" src="" class="card-img-top">
+            <div class="card-body">
+              <h5 id="cardTitle" class="card-title"></h5>
+              <p id="cardText" class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">via Wikipedia Search</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="share-btn-group text-center">
+            <button id="copyCardBtn" class="btn btn-copy">
+              <i class="bi bi-clipboard"></i> Copy
+            </button>
+            <a id="tweetCardBtn" class="btn btn-twitter" target="_blank">
+              <i class="bi bi-twitter"></i> Twitter
+            </a>
+            <a id="facebookShareBtn" class="btn btn-facebook" target="_blank">
+              <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <a id="whatsappShareBtn" class="btn btn-whatsapp" target="_blank">
+              <i class="bi bi-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Footer -->
+<footer class="footer mt-5 pt-4 pb-3 border-top">
+  <div class="container">
+    <div class="row">
+      
+      <!-- App Info -->
+      <div class="col-md-6 mb-3">
+        <!-- <h6 class="fw-bold">Wiki AI Summary</h6> -->
+         <img src="assets/icon-200.png" alt="Site logo" class="me-2">
+          <!-- <img src="assets/icon-354.png" alt="Site logo" class="me-2"> -->
+        <p class="small">
+          This is affiliated with the Igbo Wikimedia User Group.  
+          All Wikipedia content is available under the  
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">
+            Creative Commons Attribution-ShareAlike License
+          </a>.
+        </p>
+      </div>
+
+      <!-- Legal & Disclaimer -->
+      <div class="col-md-6 mb-3">
+        <h6 class="fw-bold">Legal Disclaimer</h6>
+        <ul class="small mb-2">
+          <li>Unofficial access to Wikipedia content</li>
+          <li>AI summaries are automatically generated and may contain errors</li>
+          <li>
+            You agree to comply with 
+            <a href="https://en.wikipedia.org/wiki/Terms_of_Use" target="_blank">Wikipedia’s Terms of Use</a>
+          </li>
+          <li>We are not responsible for any inaccuracies in summarized content</li>
+        </ul>
+        <p class="small">
+          Wikipedia® is a registered trademark of the 
+          <a href="https://wikimediafoundation.org/" target="_blank">Wikimedia Foundation, Inc.</a>, 
+          a non-profit organization.
+        </p>
+        <p class="small">
+          By using this app, you agree to our 
+          <a href="privacy.html">Privacy Policy</a> regarding data collection and API usage.
+        </p>
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="text-center small">
+      &copy; <span id="year"></span> Wiki AI Summary · All Rights Reserved
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Auto-update year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>

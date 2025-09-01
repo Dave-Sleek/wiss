@@ -1,0 +1,18 @@
+{
+  "name": "wikidata-smart-summary",
+  "version": "1.0.0",
+  "description": "Wikidata + Wikipedia + optional AI summaries",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2"
+  }
+}
